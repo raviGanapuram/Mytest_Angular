@@ -1,0 +1,250 @@
+<div ng-controller="home">
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3> Welcome <span style="color: #2aabd2"> {{userInfo.name}} </span></h3>
+                </div>
+
+                <div class="col-md-12">
+                    <h5 style="color: #ac2925">Admin Panel / <span style="cursor: pointer;"
+                                                                   ng-click="logOut()"> Logout</span></h5>
+                </div>
+                <div class="col-md-12" style="margin-top: 2%">
+                    <uib-tabset active="active">
+                        <uib-tab index="0" heading="Programming Language ">
+                            <div class="col-md-6" style="margin-top: 3%">
+                                <form class="form-horizontal" name="plForm" ng-submit="createLangauge()">
+                                    <div class="form-group">
+                                        <lable class="col-md-3"> Name</lable>
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control" name="name" ng-model="plObj.name"
+                                                   required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <lable class="col-md-3"> Title</lable>
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control" name="title" ng-model="plObj.title"
+                                                   required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <lable class="col-md-3"> Introduction</lable>
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control" name="introduction"
+                                                   ng-model="plObj.introduction" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-6 col-md-offset-3">
+                                            <button ng-show="!updateTrue" ng-disabled="plForm.$invalid" type="submit"
+                                                    class="btn btn-primary btn-block">Create Language
+                                            </button>
+                                            <button ng-click="updateLdetails()" ng-show="updateTrue"
+                                                    ng-disabled="plForm.$invalid" type="button"
+                                                    class="btn btn-primary btn-block">Update Language
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-md-6" style="margin-top: 2.5%">
+                                <div clas="table-responsive">
+                                    <table class="table table-striped table-bordered">
+                                        <thed>
+                                            <tr>
+                                                <th> Id</th>
+                                                <th>Name</th>
+                                                <th>Title</th>
+                                                <th>Introduction</th>
+                                                <th> Actions</th>
+                                            </tr>
+                                        </thed>
+                                        <tbody>
+                                        <tr ng-repeat="details in allLanguages ">
+                                            <td>{{::details.id}} </td>
+                                            <td>{{::details.name}}</td>
+                                            <td>{{::details.title}}</td>
+                                            <td>{{::details.introduction}}</td>
+                                            <td><span> <i class="glyphicon glyphicon-pencil" style="cursor: pointer"
+                                                          ng-click="updateDetails(details)"> </i> &nbsp; <i
+                                                    class="glyphicon glyphicon-trash" style="cursor: pointer"
+                                                    ng-click="delLanguage(details.id)"> </i></span></td>
+                                        </tr>
+                                        </tbody>
+
+                                    </table>
+                                </div>
+                            </div>
+                        </uib-tab>
+                        <uib-tab index="1" heading="Lesson">
+                            <div class="col-md-6" style="margin-top: 3%">
+                                <form class="form-horizontal" name="lessForm" ng-submit="createLesson()">
+                                    <div class="form-group">
+                                        <lable class="col-md-3"> Language ID</lable>
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control" name="name" ng-model="lesObj.pid"
+                                                   required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <lable class="col-md-3"> Name</lable>
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control" name="name" ng-model="lesObj.name"
+                                                   required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <lable class="col-md-3"> Description</lable>
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control" name="title"
+                                                   ng-model="lesObj.description " required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <lable class="col-md-3"> Details</lable>
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control" name="description"
+                                                   ng-model="lesObj.details " required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-6 col-md-offset-3">
+                                            <button ng-disabled="lessForm.$invalid" ng-show="!updateLesTrue"
+                                                    type="submit"
+                                                    class="btn btn-primary btn-block">Create Lesson
+                                            </button>
+                                            <button ng-click="updateLesdetails()" ng-show="updateLesTrue"
+                                                    ng-disabled="lessForm.$invalid" type="button"
+                                                    class="btn btn-primary btn-block">Update Lesson
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-md-6" style="margin-top: 2.5%">
+                                <div clas="table-responsive">
+                                    <table class="table table-striped table-bordered">
+                                        <thed>
+                                            <tr>
+                                                <th> Language Id</th>
+                                                <th>Name</th>
+                                                <th>Description</th>
+                                                <th>Details</th>
+                                                <th> Actions</th>
+                                            </tr>
+                                        </thed>
+                                        <tbody>
+                                        <tr ng-repeat="leesion in alllessons">
+                                            <td> {{::leesion.pl_id}}</td>
+                                            <td>{{::leesion.lession_name}}</td>
+                                            <td>{{::leesion.description}}</td>
+                                            <td>{{::leesion.details}}</td>
+                                            <td><span> <i class="glyphicon glyphicon-pencil" style="cursor: pointer"
+                                                          ng-click="updateLesson(leesion)"> </i> &nbsp; <i
+                                                    class="glyphicon glyphicon-trash" style="cursor: pointer"
+                                                    ng-click="delLesson(leesion.id)"> </i></span></td>
+                                        </tr>
+
+                                        </tbody>
+
+                                    </table>
+                                </div>
+                            </div>
+                        </uib-tab>
+                        <uib-tab index="2" heading="Example">
+                            <div class="col-md-6" style="margin-top: 3%">
+                                <form class="form-horizontal" name="examForm" ng-submit="createExample()">
+                                    <div class="form-group">
+                                        <lable class="col-md-3"> Lesson</lable>
+                                        <div class="col-md-6">
+                                            <select required class="form-control" ng-model="selectedLession"
+                                                    ng-change="changedLesson(selectedLession)"
+                                                    ng-options="item.lession_name for item in alllessons">
+                                                <option selected disabled>Select Lesson</option>
+                                            </select>
+
+                                            <!--<input type="text" class="form-control" name="title"
+                                                   ng-model="examObj.id " required>-->
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <lable class="col-md-3"> Example</lable>
+                                        <div class="col-md-6">
+                                            <textarea rows="6" class="form-control" ng-model="examObj.example"
+                                                      required> </textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-6 col-md-offset-3">
+                                            <button ng-show="!updateExTrue" type="submit"
+                                                    class="btn btn-primary btn-block"
+                                                    ng-disabled="examForm.$invalid ">Create Example
+                                            </button>
+                                            <button ng-show="updateExTrue" type="button" ng-click="doUpdateEx()"
+                                                    class="btn btn-primary btn-block"
+                                                    ng-disabled="examForm.$invalid ">Update Example
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-md-6" style="margin-top: 2.5%">
+                                <div clas="table-responsive">
+                                    <table class="table table-striped table-bordered">
+                                        <thed>
+                                            <tr>
+                                                <th> Lesson</th>
+                                                <th>Example</th>
+                                                <th> Actions</th>
+                                            </tr>
+                                        </thed>
+                                        <tbody>
+                                        <tr ng-repeat="leesion in allexamples">
+                                            <td> {{::leesion.le_id}}</td>
+                                            <td>{{::leesion.example}}</td>
+                                            <td><span> <i class="glyphicon glyphicon-pencil" style="cursor: pointer"
+                                                          ng-click="updateExample(leesion)"> </i> &nbsp; <i
+                                                    class="glyphicon glyphicon-trash" style="cursor: pointer"
+                                                    ng-click="delExample(leesion.id)"> </i></span></td>
+                                        </tr>
+
+                                        </tbody>
+
+                                    </table>
+                                </div>
+                            </div>
+
+                        </uib-tab>
+                    </uib-tabset>
+                </div>
+            </div>
+
+
+            <!--        <div class="row">
+                <div class="col-md-12">
+                    <h2>Admin Panel </h2>
+                    <ul class="nav nav-tabs" style="margin-top: 2%">
+                        <li role="presentation" class="active"><a href="#programing">Programming Language </a></li>
+                        <li role="presentation"><a href="#lession">Lesson</a></li>
+                        <li role="presentation"><a href="#example">Example</a></li>
+
+                    </ul>
+                </div>
+                <div class="tab-content">
+                    &lt;!&ndash;&#45;&#45;&#45;&#45;   Programming Language Tab&#45;&#45;&#45;&#45;&ndash;&gt;
+                    <div role="tabpanel" class="tab-pane fade in active" id="programing">
+                        <h1> Hi thi is tab </h1>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="lession">
+                        <h1> Hi thi is Lession tab </h1>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="example">
+                        <h1> Hi thi is Example tab </h1>
+                    </div>
+                </div>
+            </div>-->
+        </div>
+    </div>
+</div>

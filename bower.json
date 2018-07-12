@@ -1,0 +1,16 @@
+{
+  "name": "My Angular",
+  "description": "Using angular 1.5.0",
+  "version": "0.0.0",
+  "homepage": "http://localhost:8000",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular": "~1.5.0",
+    "angular-route": "~1.5.0",
+    "angular-loader": "~1.5.0",
+    "angular-mocks": "~1.5.0",
+    "html5-boilerplate": "^5.3.0",
+    "angular-ui-notification": "^0.3.6"
+  }
+}
