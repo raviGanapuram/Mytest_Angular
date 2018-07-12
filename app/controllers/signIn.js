@@ -12,7 +12,6 @@ myAppcontroller.controller('signin', function ($scope, $location, $http, Notific
 
     $scope.logedIn = function () {
         console.log($scope.login);
-        console.log($scope.register)
         var params_body = 'email=' + $scope.login.email + '&password=' + $scope.login.password;
         $http({
             method: 'POST',
@@ -32,6 +31,7 @@ myAppcontroller.controller('signin', function ($scope, $location, $http, Notific
             $location.path('/home')
         }).error(function (data, status) {
             console.log('error');
+            console.log(data);
         })
 
     }

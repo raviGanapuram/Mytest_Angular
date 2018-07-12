@@ -153,6 +153,7 @@ myAppcontroller.controller('home', function ($scope, $location, $http, Notificat
                 console.log(data);
                 $scope.alllessons = data
                 Notification.success(' Deleted Successfully');
+                $scope.getAllExamples();
             }).error(function (data, status) {
                 console.log(data);
                 Notification.error(data.description);
