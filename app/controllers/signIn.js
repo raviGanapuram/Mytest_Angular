@@ -32,7 +32,7 @@ myAppcontroller.controller('signin', function ($scope, $location, $http, Notific
         }).error(function (data, status) {
             console.log('error');
             console.log(data);
-            Notification.success(data.description);
+            Notification.error(data.description);
         })
 
     }
